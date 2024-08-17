@@ -1,15 +1,38 @@
-<?php
+<?php 
+require 'src/controllers/BasicController.php';
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello World</h1>
-    <a href="src/views/view1.php"></a>
-</body>
-</html>
+$requisicao = $_SERVER['REQUEST_URI'];
+
+switch ($requisicao) {
+    case '/eventosWeb/principal':
+        BasicController::principal();
+
+        break;
+    /* case 'web2/mvc/carros/marcas/listar':
+        MarcaController::listarMarca();
+        
+        break;
+    case 'web2/mvc/carros/marcas/form':
+        MarcaController::formInserirMarca();
+
+        break;
+    case 'web2/mvc/carros/marcas/inserir':
+            MarcaController::inserirMarca();
+    
+        break;
+    case 'web2/mvc/carros/marcas/excluir':
+            MarcaController::excluirMarca();
+    
+        break;
+    case 'web2/mvc/carros/marcas/formAlterar':
+            MarcaController::formAlterarMarca();
+    
+        break;
+    case 'web2/mvc/carros/marcas/alterar':
+            MarcaController::alterarMarca();
+    
+        break; */
+    default:
+        BasicController::erro();
+        break;
+}
