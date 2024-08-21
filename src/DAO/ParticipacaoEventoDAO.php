@@ -12,13 +12,17 @@ class ParticipacaoEventoDao{
         }
     }
 
-    public function inserirParticipacaoEvento(int $idUsuario, int $idEvento): bool{
+    public function inserirParticipacaoEvento(int $idUsuario, int $idEvento): int | bool{
         $query = "INSERT INTO participacaoEventos (usuario_id, evento_id) VALUES ((?), (?));";
         $stmt = $this->conexao->prepare($query);
         $stmt->bindParam(1, $idUsuario, PDO::PARAM_INT);
         $stmt->bindParam(2, $idEvento, PDO::PARAM_INT);
 
-        return $stmt->execute();
+        if($stmt->execute() == true){
+            return $this->conexao->lastInsertId();
+        }else{
+            return false;
+        }
     }
 
     public function atualizarParticipacaoEvento(int $id, int $idUsuario, int $idEvento): bool{
@@ -46,6 +50,18 @@ class ParticipacaoEventoDao{
                   AND eventos.id = participacaoEventos.evento_id
                   ORDER BY 1";
         $stmt = $this->conexao->prepare($query);
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarParticipacaoEventoEspecifico(int $id): array{
+        $query = "SELECT participacaoEventos.*, usuarios.*, eventos.* 
+                  FROM usuarios, participacaoEventos, eventos
+                  WHERE usuarios.id = participacaoEventos.usuario_id
+                  AND eventos.id = participacaoEventos.evento_id
+                  AND participacaoEventos.id_participacao = (?)
+                  ORDER BY 1";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
         return $stmt->fetchALL(PDO::FETCH_ASSOC);
     }
 }

@@ -63,4 +63,4 @@ INSERT INTO participacaoEventos (usuario_id, evento_id) VALUES
 
 SELECT * FROM usuarios;
 SELECT * FROM eventos;
-SELECT * FROM usuarios_eventos;
+SELECT * FROM participacaoEventos;

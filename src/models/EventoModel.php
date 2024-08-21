@@ -1,12 +1,12 @@
 <?php
 
 Class EventoModel{
-    public function buscarEvento() : array {
+    public function buscarEventos() : array {
         require "../DAO/EventoDAO.php";
 
         $dao = new EventoDao();
 
-        return $dao->buscarEvento();
+        return $dao->buscarEventos();
     }
 
     public function inserirEvento(string $tituloEvento, string $descricao, string $localEvento, string $data) : bool {

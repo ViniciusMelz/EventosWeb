@@ -9,7 +9,7 @@ Class ParticipacaoEventoModel{
         return $dao->buscarParticipacaoEvento();
     }
 
-    public function inserirParticipacaoEvento(int $idUsuario, int $idEvento) : bool {
+    public function inserirParticipacaoEvento(int $idUsuario, int $idEvento) : int | bool {
         require "../DAO/ParticipacaoEventoDAO.php";
 
         $dao = new ParticipacaoEventoDao();
@@ -31,5 +31,12 @@ Class ParticipacaoEventoModel{
         $dao = new ParticipacaoEventoDao();
 
         return $dao->atualizarParticipacaoEvento($id, $idUsuario, $idEvento);
+    }
+    public function buscarParticipacaoEventoEspecifico(int $id) : array {
+        require "../DAO/ParticipacaoEventoDAO.php";
+
+        $dao = new ParticipacaoEventoDao();
+
+        return $dao->buscarParticipacaoEventoEspecifico($id);
     }
 }

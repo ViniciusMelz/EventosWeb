@@ -43,7 +43,7 @@ class EventoDao{
         return $stmt->execute();
     }
 
-    public function buscarEvento(): array{
+    public function buscarEventos(): array{
         $query = "SELECT * FROM eventos";
         $stmt = $this->conexao->prepare($query);
         return $stmt->fetchALL(PDO::FETCH_ASSOC);

@@ -1,16 +1,16 @@
 <?php
 class EventoController{
-    /* public static function listarEventos() : void {
-        require 'src/models/MarcaModel.php';
+    public static function listarEventosAPI() : void {
+        if($_SERVER['REQUEST_METHOD']=='POST') {
+            require 'src/models/EventoModel.php';
 
-        $marca = new MarcaModel();
-        $listaMarcas = $marca->getMarca();
-
-        //chamar a view para mostrar a lista de marcas
-        require('src/views/marcasView.php');
+            $model = new EventoModel();
+            $buscarEventos = $model->buscarEventos();
+            echo json_encode($buscarEventos);
+        }
     }
 
-    public static function formInserirMarca() : void {
+    /* public static function formInserirMarca() : void {
         $acao = '/mvc/carros/marcas/inserir';
         $funcao = 'Cadastro de Marcas';
 

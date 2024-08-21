@@ -9,7 +9,7 @@ Class UsuarioModel{
         return $dao->buscarUsuarios();
     }
 
-    public function inserirUsuario(string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin) : bool {
+    public function inserirUsuario(string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin) : int | bool {
         require "../DAO/UsuarioDAO.php";
 
         $dao = new UsuarioDao();
@@ -31,5 +31,21 @@ Class UsuarioModel{
         $dao = new UsuarioDao();
 
         return $dao->atualizarUsuario($id, $nomeUsuario, $email, $login, $senha, $ehAdmin);
+    }
+
+    public function autenticarUsuario(string $login, string $senha): array{
+        require "../DAO/UsuarioDAO.php";
+        
+        $dao = new UsuarioDao();
+        
+        return $dao->autenticarUsuario($login, $senha);
+    }
+
+    public function buscarUsuarioEspecifico(int $id){
+        require "../DAO/UsuarioDAO.php";
+
+        $dao = new UsuarioDao();
+
+        return $dao->buscarUsuarioEspecifico($id);
     }
 }
