@@ -2,7 +2,7 @@
 
 Class EventoModel{
     public function buscarEventos() : array {
-        require "../DAO/EventoDAO.php";
+        require_once "src/DAO/EventoDAO.php";
 
         $dao = new EventoDao();
 
@@ -10,7 +10,7 @@ Class EventoModel{
     }
 
     public function inserirEvento(string $tituloEvento, string $descricao, string $localEvento, string $data) : bool {
-        require "../DAO/EventoDAO.php";
+        require_once "src/DAO/EventoDAO.php";
 
         $dao = new EventoDao();
 
@@ -18,7 +18,7 @@ Class EventoModel{
     }
 
     public function deletarEvento(int $id) : bool{
-        require "../DAO/EventoDAO.php";
+        require_once "src/DAO/EventoDAO.php";
 
         $dao = new EventoDao();
 
@@ -26,7 +26,7 @@ Class EventoModel{
     }
 
     public function atualizarEvento(int $id, string $tituloEvento, string $descricao, string $localEvento, string $data) : bool {
-        require "../DAO/EventoDAO.php";
+        require_once "src/DAO/EventoDAO.php";
 
         $dao = new EventoDao();
 
