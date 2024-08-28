@@ -1,10 +1,11 @@
 <?php
-class EventoController
+class UsuarioController
 {
-    public function autenticarUsuarioAPI()
+    public static function autenticarUsuarioAPI()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dados = json_decode(file_get_contents("php://input"));
+            require_once 'src/models/UsuarioModel.php';
 
             $login = $dados->login;
             $senha = $dados->senha;
@@ -24,11 +25,12 @@ class EventoController
         }
     }
 
-    public function inserirUsuarioAPI(){
+    public static function inserirUsuarioAPI(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dados = json_decode(file_get_contents("php://input"));
+            require_once 'src/models/UsuarioModel.php';
 
-            $nome = $dados->nome;
+            $nome = $dados->nomeUsuario;
             $email = $dados->email;
             $login = $dados->login;
             $senha = $dados->senha;
@@ -44,6 +46,8 @@ class EventoController
                 }else{
                     echo json_encode(array('status' => 'erro', 'mensagem' => 'Erro ao recuperar dados do usuário inserido.'));
                 }
+            }else{
+                echo json_encode(array('status' => 'erro', 'mensagem' => 'ERRO: Login ou Email já utilizado'));
             }
         }
     }

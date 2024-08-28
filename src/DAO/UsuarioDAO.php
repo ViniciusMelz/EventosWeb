@@ -52,6 +52,8 @@ class UsuarioDao{
     public function buscarUsuarios(): array{
         $query = "SELECT * FROM USUARIOS";
         $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        
         return $stmt->fetchALL(PDO::FETCH_ASSOC);
     }
 
@@ -60,7 +62,8 @@ class UsuarioDao{
         $stmt = $this->conexao->prepare($query);
         $stmt-> bindParam(1, $login, PDO::PARAM_STR);
         $stmt-> bindParam(2, $senha, PDO::PARAM_STR);
-        
+        $stmt->execute();
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -68,6 +71,7 @@ class UsuarioDao{
         $query = "SELECT * FROM usuarios WHERE id = (?)";
         $stmt = $this->conexao->prepare($query);
         $stmt-> bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
