@@ -1,12 +1,13 @@
 <?php
-class EventoController
+class ParticipacaoEventoController
 {
-    public function inserirParticipacaoEventoAPI(){
+    public static function inserirParticipacaoEventoAPI(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dados = json_decode(file_get_contents("php://input"));
+            require_once 'src/models/ParticipacaoEventoModel.php';
 
-            $idEvento = $dados->evento->id_evento;
-            $idUsuario = $dados->usuario->id_usuario;
+            $idEvento = $dados->evento->id;
+            $idUsuario = $dados->usuario->id;
 
             $model = new ParticipacaoEventoModel();
 
@@ -22,9 +23,9 @@ class EventoController
         }
     }
 
-    public function buscarParticipacaoEventoAPI(){
+    public static function buscarParticipacaoEventoAPI(){
         if($_SERVER['REQUEST_METHOD']=='POST') {
-            require 'src/models/ParticipacaoEventoModel.php';
+            require_once 'src/models/ParticipacaoEventoModel.php';
 
             $model = new ParticipacaoEventoModel();
             $buscarEventos = $model->buscarParticipacaoEvento();
