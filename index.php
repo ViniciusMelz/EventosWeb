@@ -1,37 +1,36 @@
 <?php 
 require 'src/controllers/BasicController.php';
+require 'src/controllers/EventoController.php';
+require 'src/controllers/ParticipacaoEventoController.php';
+require 'src/controllers/UsuarioController.php';
 
 $requisicao = $_SERVER['REQUEST_URI'];
 
 switch ($requisicao) {
-    case '/eventosWeb/principal':
+    case '/eventosWeb/':
         BasicController::principal();
 
         break;
-    /* case 'web2/mvc/carros/marcas/listar':
-        MarcaController::listarMarca();
+    case '/eventosWeb/API/evento/listarEventos':
+        EventoController::listarEventosAPI();
         
         break;
-    case 'web2/mvc/carros/marcas/form':
-        MarcaController::formInserirMarca();
+    case '/eventosWeb/API/participacao/listarParticipacoes':
+        ParticipacaoEventoController::buscarParticipacaoEventoAPI();
 
         break;
-    case 'web2/mvc/carros/marcas/inserir':
-            MarcaController::inserirMarca();
+    case '/eventosWeb/API/participacao/inserirParticipacao':
+        ParticipacaoEventoController::inserirParticipacaoEventoAPI();
     
         break;
-    case 'web2/mvc/carros/marcas/excluir':
-            MarcaController::excluirMarca();
+    case '/eventosWeb/API/usuario/autenticarUsuario':
+        UsuarioController::autenticarUsuarioAPI();
     
         break;
-    case 'web2/mvc/carros/marcas/formAlterar':
-            MarcaController::formAlterarMarca();
+    case '/eventosWeb/API/usuario/inserirUsuario':
+        UsuarioController::inserirUsuarioAPI();
     
         break;
-    case 'web2/mvc/carros/marcas/alterar':
-            MarcaController::alterarMarca();
-    
-        break; */
     default:
         BasicController::erro();
         break;
