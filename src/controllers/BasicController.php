@@ -5,7 +5,7 @@ class BasicController{
         $title = 'Pagina Principal';
         $content = 'Bem vindo a página principal.';
 
-        require __DIR__.'/../views/view1.php';
+        require __DIR__.'/../views/Login.php';
         
     }
 
