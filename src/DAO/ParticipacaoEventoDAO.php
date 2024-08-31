@@ -6,7 +6,7 @@ class ParticipacaoEventoDao
     public function __construct()
     {
         try {
-            $pdo = new PDO("mysql:host=localhost;dbname=eventos", "root", "");
+            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3307", "root", "");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conexao = $pdo;
         } catch (PDOException $e) {
@@ -92,6 +92,43 @@ class ParticipacaoEventoDao
                   WHERE usuarios.id = participacaoEventos.usuario_id
                   AND eventos.id = participacaoEventos.evento_id
                   AND participacaoEventos.id_participacao = (?)
+                  ORDER BY 1";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $participacoes = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $participacoes[] = [
+                'id_participacao' => $result['id_participacao'],
+                'usuario' => [
+                    'id' => $result['id_usuario'],
+                    'nomeUsuario' => $result['nomeUsuario'],
+                    'email' => $result['email'],
+                    'login' => $result['login'],
+                    'senha' => $result['senha'],
+                    'ehAdmin' => $result['ehAdmin']
+                ],
+                'evento' => [
+                    'id' => $result['id_evento'],
+                    'titulo' => $result['titulo'],
+                    'descricao' => $result['descricao'],
+                    'localEvento' => $result['localEvento'],
+                    'dataEvento' => $result['dataEvento']
+                ]
+            ];
+        }
+        return $participacoes;
+    }
+
+    public function buscarParticipacaoEventoUsuarioEspecifico(int $id): array
+    {
+        $query = "SELECT participacaoEventos.*, 
+                  usuarios.id  AS 'id_usuario', usuarios.nomeUsuario, usuarios.email, usuarios.login, usuarios.senha, usuarios.ehAdmin, 
+                  eventos.id AS 'id_evento', eventos.titulo, eventos.descricao, eventos.localEvento, eventos.dataEvento
+                  FROM usuarios, participacaoEventos, eventos
+                  WHERE usuarios.id = participacaoEventos.usuario_id
+                  AND eventos.id = participacaoEventos.evento_id
+                  AND usuarios.id = (?)
                   ORDER BY 1";
         $stmt = $this->conexao->prepare($query);
         $stmt->bindParam(1, $id, PDO::PARAM_INT);
