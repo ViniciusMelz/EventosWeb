@@ -2,10 +2,12 @@
 
 class BasicController{
     public static function principal(){
-        $title = 'Pagina Principal';
-        $content = 'Bem vindo a página principal.';
-
         require __DIR__.'/../views/Login.php';
+        
+    }
+
+    public static function cadastro(){
+        require __DIR__.'/../views/Cadastro.php';
         
     }
 
