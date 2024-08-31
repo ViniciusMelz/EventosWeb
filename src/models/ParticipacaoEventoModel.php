@@ -39,4 +39,12 @@ Class ParticipacaoEventoModel{
 
         return $dao->buscarParticipacaoEventoEspecifico($id);
     }
+
+    public function buscarParticipacaoEventousuarioEspecifico(int $id) : array {
+        require_once "src/DAO/ParticipacaoEventoDAO.php";
+
+        $dao = new ParticipacaoEventoDao();
+
+        return $dao->buscarParticipacaoEventoUsuarioEspecifico($id);
+    }
 }

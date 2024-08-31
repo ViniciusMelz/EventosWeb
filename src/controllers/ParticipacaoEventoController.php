@@ -32,4 +32,30 @@ class ParticipacaoEventoController
             echo json_encode($buscarEventos);
         }
     }
+
+    public static function deletarParticipacaoEventoAPI(){
+        if($_SERVER['REQUEST_METHOD']=='POST') {
+            $dados = json_decode(file_get_contents("php://input"));
+            require_once 'src/models/ParticipacaoEventoModel.php';
+
+            $idParticipacaoEvento = $dados->id_participacao;
+
+            $model = new ParticipacaoEventoModel();
+            $confirmacaoDelete = $model->deletarParticipacaoEvento($idParticipacaoEvento);
+            echo json_encode($confirmacaoDelete);
+        }
+    }
+
+    public static function BuscarParticipacaoEventoUsuarioEspecificoAPI(){
+        if($_SERVER['REQUEST_METHOD']=='POST') {
+            $dados = json_decode(file_get_contents("php://input"));
+            require_once 'src/models/ParticipacaoEventoModel.php';
+
+            $idUsuario = $dados->id;
+
+            $model = new ParticipacaoEventoModel();
+            $participacaoEventosUsuario = $model->buscarParticipacaoEventousuarioEspecifico($idUsuario);
+            echo json_encode($participacaoEventosUsuario);
+        }
+    }
 }
