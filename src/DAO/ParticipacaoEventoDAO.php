@@ -6,7 +6,7 @@ class ParticipacaoEventoDao
     public function __construct()
     {
         try {
-            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3307", "root", "");
+            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3306", "root", "");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conexao = $pdo;
         } catch (PDOException $e) {
@@ -68,7 +68,7 @@ class ParticipacaoEventoDao
                     'nomeUsuario' => $result['nomeUsuario'],
                     'email' => $result['email'],
                     'login' => $result['login'],
-                    'senha' => $result['senha'],
+                    'senha' => $this->DesincriptografarSenha($result['senha']),
                     'ehAdmin' => $result['ehAdmin']
                 ],
                 'evento' => [
@@ -105,7 +105,7 @@ class ParticipacaoEventoDao
                     'nomeUsuario' => $result['nomeUsuario'],
                     'email' => $result['email'],
                     'login' => $result['login'],
-                    'senha' => $result['senha'],
+                    'senha' => $this->DesincriptografarSenha($result['senha']),
                     'ehAdmin' => $result['ehAdmin']
                 ],
                 'evento' => [
@@ -142,7 +142,7 @@ class ParticipacaoEventoDao
                     'nomeUsuario' => $result['nomeUsuario'],
                     'email' => $result['email'],
                     'login' => $result['login'],
-                    'senha' => $result['senha'],
+                    'senha' => $this->DesincriptografarSenha($result['senha']),
                     'ehAdmin' => $result['ehAdmin']
                 ],
                 'evento' => [
@@ -155,5 +155,16 @@ class ParticipacaoEventoDao
             ];
         }
         return $participacoes;
+    }
+
+    private function CriptografarSenha($senha):string {
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+        $senhaIncriptografada = openssl_encrypt($senha, 'aes-256-cbc', 'criptografia', 0, $iv);
+        return base64_encode($senhaIncriptografada . '::' . $iv);
+    }    
+
+    private function DesincriptografarSenha($senha) {
+        list($senhaIncriptografada, $iv) = explode('::', base64_decode($senha), 2);
+        return openssl_decrypt($senhaIncriptografada, 'aes-256-cbc', 'criptografia', 0, $iv);
     }
 }
