@@ -15,7 +15,7 @@ class UsuarioController
             if (!empty($login) && !empty($senha)) {
                 $resultado = $model->autenticarUsuario($login, $senha);
                 if (count($resultado) == 1) {
-                    echo json_encode($resultado);
+                    echo json_encode($resultado[0]);
                 } else {
                     echo json_encode(array("erro" => "Login e senha invalidos."));
                 }
@@ -43,7 +43,7 @@ class UsuarioController
             if ($resultado != false) {
                 $resultadoBusca = $model->buscarUsuarioEspecifico($resultado);
                 if (count($resultadoBusca) == 1) {
-                    echo json_encode($resultadoBusca);
+                    echo json_encode($resultadoBusca[0]);
                 } else {
                     echo json_encode(array('status' => 'erro', 'mensagem' => 'Erro ao recuperar dados do usuário inserido.'));
                 }
