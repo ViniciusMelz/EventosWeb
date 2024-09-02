@@ -15,15 +15,19 @@ switch ($requisicao) {
         BasicController::cadastro();
 
         break;
+    case '/EventosWeb/Menu':
+        BasicController::menu();
 
-        //API//
-        //Eventos//
+        break;
+
+    //API//
+    //Eventos//
     case '/eventosWeb/API/evento/listarEventos':
         EventoController::listarEventosAPI();
 
         break;
 
-        //Participações Eventos//
+    //Participações Eventos//
     case '/eventosWeb/API/participacao/listarParticipacoes':
         ParticipacaoEventoController::buscarParticipacaoEventoAPI();
 
@@ -41,7 +45,7 @@ switch ($requisicao) {
 
         break;
 
-        //Usuário//
+    //Usuário//
     case '/eventosWeb/API/usuario/autenticarUsuario':
         UsuarioController::autenticarUsuarioAPI();
 

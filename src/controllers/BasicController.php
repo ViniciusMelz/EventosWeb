@@ -11,6 +11,11 @@ class BasicController{
         
     }
 
+    public static function menu(){
+        require __DIR__.'/../views/MenuInicial.php';
+        
+    }
+
     public static function erro(){
         $title = 'Pagina Erro';
         $content = 'Aconteceu um erro :(';
