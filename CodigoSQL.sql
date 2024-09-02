@@ -31,14 +31,14 @@ CREATE TABLE participacaoEventos (
 );
 
 INSERT INTO usuarios (nomeUsuario, email, login, senha, ehAdmin) VALUES
-("Vinicius Melz", "vinicius@gmail.com", "viniciusmelz", "senha", 1),
-("Johnny Becker", "johnny@gmail.com", "johnnybecker", "12345", 0),
-("Alice Souza", "alice@gmail.com", "alicesouza", "password123", 0),
-("Bruno Lima", "bruno@gmail.com", "brunolima", "brunosenha", 0),
-("Carla Santos", "carla@gmail.com", "carlasantos", "carla1234", 0),
-("Diego Ferreira", "diego@gmail.com", "diegoferreira", "senha123", 1),
-("Eduardo Oliveira", "eduardo@gmail.com", "eduardooliveira", "edusenha", 0),
-("Fernanda Costa", "fernanda@gmail.com", "fernandacosta", "fernanda123", 0);
+("Vinicius Melz", "vinicius@gmail.com", "viniciusmelz", "dHhjYko2UHBYMzhQWHZnU1cxOVpPQT09Ojoz3ZQyiGDmYiTg4Vclxdks", 1),
+("Johnny Becker", "johnny@gmail.com", "johnnybecker", "K0JkWHVHeUVGT21wcjFPZUx4UVZrQT09OjraK1dMgtl4HcYv9VYjLqyV", 0),
+("Alice Souza", "alice@gmail.com", "alicesouza", "VGRsYVQwYUgrN0lnbmg2T21GUCtKQT09OjqKr2pUI\/Slfkk7\/hbE+e6F", 0),
+("Bruno Lima", "bruno@gmail.com", "brunolima", "ZDNPMVN3RW5vdzIreFVhK3dpeUQ0UT09Ojr7HsmVrm3Az+LPVHUpI\/qs", 0),
+("Carla Santos", "carla@gmail.com", "carlasantos", "WGRHeFgxQzh6MTIxSVp0QVhCaTVMQT09Ojo7lM57ZZHEeScrpdDrv8\/k", 0),
+("Diego Ferreira", "diego@gmail.com", "diegoferreira", "Y2ZtR1EzaGNzT0FCTEp5UHUweXFDZz09OjrPMuQ0631goNUJ4DE44yX1", 1),
+("Eduardo Oliveira", "eduardo@gmail.com", "eduardooliveira", "NDUzckc0M1FvbERUMURTVUdDNTRxUT09OjpwqrmPNUY9ydfN9N3wsN9+", 0),
+("Fernanda Costa", "fernanda@gmail.com", "fernandacosta", "NkFkRG5ZYUlrL1JjZTIveTZQWUFSZz09OjrEMdgCw3GGi1hlSem8QqLU", 0);
 
 INSERT INTO eventos (titulo, descricao, localEvento, dataEvento) VALUES
 ("Kakedo Day", "Dia para reviver os videogames antigos", "AFUNISC", "2024-07-24"),
