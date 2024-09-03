@@ -1,9 +1,10 @@
 <?php
 session_start();
 if (isset($_SESSION["usuario"])) {
-    header('location: /EventosWeb/Menu');
+    header('location: /eventosWeb/Menu');
 } else {
     $erro = '';
+    $nome = $email = $login = $senha = $senhaDnv = '';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nome = $_POST['nome'];
         $email = $_POST['email'];
@@ -11,23 +12,24 @@ if (isset($_SESSION["usuario"])) {
         $senha = $_POST['senha'];
         $senhaDnv = $_POST['senhaDnv'];
         if ($senha === $senhaDnv) {
-
+            require_once "src/controllers/UsuarioController.php";
+            $usuarioController = new UsuarioController();
+            $usuario = $usuarioController->inserirUsuario($nome, $email, $login, $senha);
+            if(!is_string($usuario)){
+                ?>
+                <div id="aviso"><?php echo 'Usuário Cadastrado com Sucesso!' ?></div>
+                <script>
+                    const aviso = document.getElementById('aviso');
+                    aviso.style.display = 'block';
+                    setTimeout(function() {
+                        aviso.style.display = 'none';
+                    }, 3000);
+                </script>
+                <?php
+                sleep(3);
+                header('location: /eventosWeb/Login');
+            }
         } else {
-            ?>
-            <!-- <script async>
-                $.ajax({
-                    url: '.../src/views/Cadastro.php',
-                    type: 'POST',
-                    success: function (data) {
-                        $("#inputNome").val(data.nome);
-                        $("#inputEmail").val(data.email);
-                        $("#inputLogin").val(data.login);
-                        $("#inputSenha").val(data.senha);
-                        $("#inputSenhaDnv").val(data.senhaDnv);
-                    }
-                });
-            </script> -->
-            <?php
             $erro = 'As senhas devem ser Iguais!';
         }
     }
@@ -50,15 +52,15 @@ if (isset($_SESSION["usuario"])) {
         <div id="containerLogin">
             <h1 id="tituloLogin">CADASTRO</h1>
             <form action="" method="POST">
-                <input id="inputNome" type="text" name="nome" required>
-                <input id="inputEmail" type="email" name="email" required>
-                <input id="inputLogin" type="text" name="login" required>
-                <input id="inputSenha" type="password" name="senha" required>
-                <input id="inputSenhaDnv" type="password" name="senhaDnv" required>
+                <input id="inputNome" type="text" name="nome" value="<?php echo $nome ?>" required>
+                <input id="inputEmail" type="email" name="email" value="<?php echo $email ?>" required>
+                <input id="inputLogin" type="text" name="login" value="<?php echo $login ?>" required>
+                <input id="inputSenha" type="password" name="senha" value="<?php echo $senha ?>" required>
+                <input id="inputSenhaDnv" type="password" name="senhaDnv" value="<?php echo $senhaDnv ?>" required>
                 <input type="submit" value="Cadastro">
             </form>
             <p id="erro"><?php echo $erro ?></p>
-            <a href="">Já possuo Conta? Login!</a>
+            <a href="Login">Já possuo Conta? Login!</a>
         </div>
     </div>
 </body>

@@ -7,15 +7,15 @@ require 'src/controllers/UsuarioController.php';
 $requisicao = $_SERVER['REQUEST_URI'];
 
 switch ($requisicao) {
-    case '/EventosWeb/':
+    case '/eventosWeb/Login':
         BasicController::principal();
 
         break;
-    case '/EventosWeb/Cadastro':
+    case '/eventosWeb/Cadastro':
         BasicController::cadastro();
 
         break;
-    case '/EventosWeb/Menu':
+    case '/eventosWeb/Menu':
         BasicController::menu();
 
         break;

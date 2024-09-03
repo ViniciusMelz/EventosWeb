@@ -53,7 +53,7 @@ class UsuarioController
         }
     }
 
-    public static function autenticarUsuario(string $login, string $senha): array | bool
+    public function autenticarUsuario(string $login, string $senha): array | bool
     {
         require_once 'src/models/UsuarioModel.php';
 
@@ -67,21 +67,15 @@ class UsuarioController
                 return false;
             }
         }
+        return false;
     }
 
-    public static function inserirUsuario(): array | bool | string
+    public function inserirUsuario(string $nome, string $email, string $login, string $senha): array | bool | string
     {
-        $dados = json_decode(file_get_contents("php://input"));
         require_once 'src/models/UsuarioModel.php';
 
-        $nome = $dados->nomeUsuario;
-        $email = $dados->email;
-        $login = $dados->login;
-        $senha = $dados->senha;
-        $ehAdmin = $dados->ehAdmin;
-
         $model = new UsuarioModel();
-
+        $ehAdmin = 1;
         $resultado = $model->inserirUsuario($nome, $email, $login, $senha, $ehAdmin);
         if ($resultado != false) {
             $resultadoBusca = $model->buscarUsuarioEspecifico($resultado);

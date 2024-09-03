@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION["usuario"])) {
-    header('location: /EventosWeb/Menu');
+    header('location: /eventosWeb/Menu');
 } else {
     $erro = '';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -12,8 +12,12 @@ if (isset($_SESSION["usuario"])) {
         $usuarioController = new UsuarioController();
         $usuario = $usuarioController->autenticarUsuario($login, $senha);
         if ($usuario != false) {
-            $_SESSION["usuario"] = $usuario;
-            header('location: /EventosWeb/Menu');
+            if($usuario[0]['ehAdmin'] == 1){
+                $_SESSION["usuario"] = $usuario;
+                header('location: /eventosWeb/Menu');
+            }else{
+                $erro = 'Somente Admins podem realizar o login!';
+            }
         } else {
             $erro = 'Login ou Senha Incorretos, Tente Novamente!';
         }
