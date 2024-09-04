@@ -4,11 +4,11 @@ session_destroy();
 if (!isset($_SESSION["usuario"])) {
     header('location: /eventosWeb/Login');
 } else {
+}
     require_once "src/controllers/EventoController.php";
     $eventoController = new EventoController();
     $eventos = $eventoController->listarEventos();
-    print_r($eventos);
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,10 +30,11 @@ if (!isset($_SESSION["usuario"])) {
         <?php
         for ($i=0; $i < count($eventos); $i++) { 
             echo '<tr>';
-            echo '<td>' . $usuario[$i]['titulo'] . '</td>';
-            echo '<td>' . $usuario[$i]['descricao'] . '</td>';
-            echo '<td>' . $usuario[$i]['localEvento'] . '</td>';
-            echo '<td>' . $usuario[$i]['dataEvento'] . '</td>';
+            echo '<td>' . $eventos[$i]['id'] . '</td>';
+            echo '<td>' . $eventos[$i]['titulo'] . '</td>';
+            echo '<td>' . $eventos[$i]['descricao'] . '</td>';
+            echo '<td>' . $eventos[$i]['localEvento'] . '</td>';
+            echo '<td>' . $eventos[$i]['dataEvento'] . '</td>';
             echo '</tr>';
         }
         ?>
