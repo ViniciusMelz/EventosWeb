@@ -1,13 +1,37 @@
 <?php
-class EventoController{
-    public static function listarEventosAPI() : void {
-        if($_SERVER['REQUEST_METHOD']=='POST') {
+class EventoController
+{
+    public static function listarEventosAPI(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            require 'src/models/EventoModel.php';
+            $dados = json_decode(file_get_contents("php://input"));
+            $idUsuario = $dados->id;
+
+            $model = new EventoModel();
+            $buscarEventos = $model->buscarEventosUsuarioNaoIncritos($idUsuario);
+            echo json_encode($buscarEventos);
+        }
+    }
+
+    public static function buscarEventosUsuarioNaoIncritosAPI(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             require 'src/models/EventoModel.php';
 
             $model = new EventoModel();
             $buscarEventos = $model->buscarEventos();
             echo json_encode($buscarEventos);
         }
+    }
+
+    public static function listarEventos(): array
+    {
+        require 'src/models/EventoModel.php';
+
+        $model = new EventoModel();
+        $buscarEventos = $model->buscarEventos();
+        return $buscarEventos;
     }
 
     /* public static function formInserirMarca() : void {

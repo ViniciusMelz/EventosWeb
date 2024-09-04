@@ -1,10 +1,10 @@
-body{
+body {
     min-height: 100vh;
     margin: 0px;
     font-family: inter;
 }
 
-.flex-container{
+.flex-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -12,7 +12,7 @@ body{
     min-height: 100vh;
 }
 
-#containerLogin{
+#containerLogin {
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -25,7 +25,7 @@ body{
     padding-bottom: 10vh;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -33,7 +33,7 @@ form{
     justify-content: center;
 }
 
-input[type="submit"]{
+input[type="submit"] {
     width: 60%;
     height: 35px;
     background-color: green;
@@ -43,7 +43,8 @@ input[type="submit"]{
     margin-top: 20px;
 }
 
-input[type="text"],[type="password"]{
+input[type="text"],
+[type="password"] {
     width: 85%;
     height: 21px;
     font-size: 18px;
@@ -52,12 +53,30 @@ input[type="text"],[type="password"]{
     font-family: inter;
 }
 
+@keyframes entrar {
+    from {
+        margin-left: 100%;
+        width: 50%;
+    }
+
+    to {
+        margin-left: 25%;
+        width: 50%;
+    }
+}
+
 #aviso {
     display: none;
     background-color: #4CAF50;
+    width: 50%;
     color: white;
     padding: 15px;
     margin: 20px 0;
     border-radius: 5px;
     text-align: center;
+    position: absolute;
+    animation-duration: 1s;
+    animation-name: entrar;
+    text-align: center;
+    margin-left: 25%;
 }

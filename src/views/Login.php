@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION["usuario"])) {
-    header('location: /eventosWeb/Menu');
+    header('location: /eventosWeb/Eventos');
 } else {
     $erro = '';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -14,7 +14,7 @@ if (isset($_SESSION["usuario"])) {
         if ($usuario != false) {
             if($usuario[0]['ehAdmin'] == 1){
                 $_SESSION["usuario"] = $usuario;
-                header('location: /eventosWeb/Menu');
+                header('location: /eventosWeb/Eventos');
             }else{
                 $erro = 'Somente Admins podem realizar o login!';
             }

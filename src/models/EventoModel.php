@@ -9,6 +9,14 @@ Class EventoModel{
         return $dao->buscarEventos();
     }
 
+    public function buscarEventosUsuarioNaoIncritos($idUsuario) : array {
+        require_once "src/DAO/EventoDAO.php";
+
+        $dao = new EventoDao();
+
+        return $dao->buscarEventosUsuarioNaoIncritos($idUsuario);
+    }
+
     public function inserirEvento(string $tituloEvento, string $descricao, string $localEvento, string $data) : bool {
         require_once "src/DAO/EventoDAO.php";
 

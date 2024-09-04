@@ -15,7 +15,7 @@ class ParticipacaoEventoController
             if($resultado != false){
                 $resultadoBusca = $model->buscarParticipacaoEventoEspecifico($resultado);
                 if(count($resultadoBusca) == 1){
-                    echo json_encode($resultadoBusca);
+                    echo json_encode($resultadoBusca[0]);
                 }else{
                     echo json_encode(array('status' => 'erro', 'mensagem' => 'Erro ao recuperar dados do usuário inserido.'));
                 }
@@ -42,7 +42,11 @@ class ParticipacaoEventoController
 
             $model = new ParticipacaoEventoModel();
             $confirmacaoDelete = $model->deletarParticipacaoEvento($idParticipacaoEvento);
-            echo json_encode($confirmacaoDelete);
+            if($confirmacaoDelete != false){
+                echo json_encode($dados);
+            }else{
+                echo json_encode($confirmacaoDelete);
+            }
         }
     }
 

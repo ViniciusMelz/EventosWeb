@@ -1,7 +1,8 @@
 <?php
 session_start();
+session_destroy();
 if (isset($_SESSION["usuario"])) {
-    header('location: /eventosWeb/Menu');
+    header('location: /eventosWeb/Eventos');
 } else {
     $erro = '';
     $nome = $email = $login = $senha = $senhaDnv = '';
@@ -17,17 +18,20 @@ if (isset($_SESSION["usuario"])) {
             $usuario = $usuarioController->inserirUsuario($nome, $email, $login, $senha);
             if(!is_string($usuario)){
                 ?>
-                <div id="aviso"><?php echo 'Usuário Cadastrado com Sucesso!' ?></div>
+                <div id="aviso">
+                    <?php echo 'Usuário Cadastrado com Sucesso!' ?>
+                </div>
                 <script>
                     const aviso = document.getElementById('aviso');
                     aviso.style.display = 'block';
                     setTimeout(function() {
                         aviso.style.display = 'none';
-                    }, 3000);
+                    }, 5000);
                 </script>
                 <?php
-                sleep(3);
-                header('location: /eventosWeb/Login');
+                $nome = $email = $login = $senha = $senhaDnv = '';
+            }else{
+                $erro = $usuario;
             }
         } else {
             $erro = 'As senhas devem ser Iguais!';

@@ -4,7 +4,7 @@ class EventoDao{
 
     public function __construct() {
         try{
-            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3306", "root", "");
+            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3307", "root", "");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conexao = $pdo;
         }catch(PDOException $e){
@@ -46,6 +46,20 @@ class EventoDao{
     public function buscarEventos(): array{
         $query = "SELECT * FROM eventos";
         $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarEventosUsuarioNaoIncritos($idUsuario): array{
+        $query = "SELECT e.*
+                  FROM Eventos e
+                  WHERE e.id NOT IN (
+                    SELECT pe.evento_id
+                    FROM participacaoEventos pe
+                    WHERE pe.usuario_id = (?)
+                  )";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindParam(1, $idUsuario, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchALL(PDO::FETCH_ASSOC);
     }

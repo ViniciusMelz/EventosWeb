@@ -6,7 +6,7 @@ class UsuarioDao
     public function __construct()
     {
         try {
-            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3306", "root", "");
+            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3307", "root", "");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conexao = $pdo;
         } catch (PDOException $e) {
@@ -25,11 +25,16 @@ class UsuarioDao
         $stmt->bindParam(4, $senhaIncriptografada, PDO::PARAM_STR);
         $stmt->bindParam(5, $ehAdmin, PDO::PARAM_INT);
 
-        if ($stmt->execute() == true) {
-            return $this->conexao->lastInsertId();
-        } else {
+        try{
+            if ($stmt->execute() == true) {
+                return $this->conexao->lastInsertId();
+            } else {
+                return false;
+            }
+        }catch(Exception){
             return false;
         }
+        
     }
 
     public function atualizarUsuario(int $id, string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin): bool

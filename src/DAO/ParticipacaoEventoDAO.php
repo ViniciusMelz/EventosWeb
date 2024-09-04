@@ -6,7 +6,7 @@ class ParticipacaoEventoDao
     public function __construct()
     {
         try {
-            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3306", "root", "");
+            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3307", "root", "");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conexao = $pdo;
         } catch (PDOException $e) {
