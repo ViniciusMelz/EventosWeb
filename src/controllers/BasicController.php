@@ -16,6 +16,11 @@ class BasicController{
         
     }
 
+    public static function criarEvento(){
+        require __DIR__.'/../views/CriarEvento.php';
+        
+    }
+
     public static function erro(){
         $title = 'Pagina Erro';
         $content = 'Aconteceu um erro :(';

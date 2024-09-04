@@ -4,7 +4,7 @@ class EventoDao{
 
     public function __construct() {
         try{
-            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3307", "root", "");
+            $pdo = new PDO("mysql:host=localhost;dbname=eventos;port=3306", "root", "");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conexao = $pdo;
         }catch(PDOException $e){
@@ -46,6 +46,28 @@ class EventoDao{
     public function buscarEventos(): array{
         $query = "SELECT * FROM eventos";
         $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarEventosPorNomeEvento(string $nomeEvento): array{
+        $query = "SELECT * FROM eventos WHERE titulo LIKE (?)";
+        $stmt = $this->conexao->prepare($query);
+        $nomeEvento = '%'.$nomeEvento.'%';
+        $stmt->bindParam(1, $nomeEvento, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarEventosPorNomeUsuario(string $nomeUsuario): array{
+        $query = "SELECT e.* FROM Eventos e WHERE e.id IN(
+	                SELECT pe.evento_id FROM participacaoeventos pe
+                    INNER JOIN usuarios u ON pe.usuario_id = u.id
+                    WHERE u.nomeUsuario LIKE (?)
+                 );";
+        $stmt = $this->conexao->prepare($query);
+        $nomeUsuario = '%'.$nomeUsuario.'%';
+        $stmt->bindParam(1, $nomeUsuario, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchALL(PDO::FETCH_ASSOC);
     }

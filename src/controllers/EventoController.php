@@ -34,6 +34,24 @@ class EventoController
         return $buscarEventos;
     }
 
+    public static function listarEventosPorNomeEvento(string $nomeEvento): array
+    {
+        require 'src/models/EventoModel.php';
+
+        $model = new EventoModel();
+        $buscarEventos = $model->buscarEventosPorNomeEvento($nomeEvento);
+        return $buscarEventos;
+    }
+
+    public static function listarEventosPorNomeUsuario(string $nomeUsuario): array
+    {
+        require 'src/models/EventoModel.php';
+
+        $model = new EventoModel();
+        $buscarEventos = $model->buscarEventosPorNomeUsuario($nomeUsuario);
+        return $buscarEventos;
+    }
+
     /* public static function formInserirMarca() : void {
         $acao = '/mvc/carros/marcas/inserir';
         $funcao = 'Cadastro de Marcas';

@@ -41,8 +41,8 @@ if (isset($_SESSION["usuario"])) {
         <div id="containerLogin">
             <h1 id="tituloLogin">LOGIN</h1>
             <form action="" method="POST">
-                <input type="text" name="login" required>
-                <input type="password" name="senha" required>
+                <input type="text" name="login" value="viniciusmelz" required>
+                <input type="password" name="senha" value="senha" required>
                 <input type="submit" value="Login">
             </form>
             <p id="erro"><?php echo $erro ?></p>

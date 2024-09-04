@@ -19,6 +19,10 @@ switch ($requisicao) {
         BasicController::eventos();
 
         break;
+    case '/eventosWeb/criarEvento':
+        BasicController::criarEvento();
+
+        break;
 
         //API//
         //Eventos//

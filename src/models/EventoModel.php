@@ -9,6 +9,22 @@ Class EventoModel{
         return $dao->buscarEventos();
     }
 
+    public function buscarEventosPorNomeEvento(string $nomeEvento) : array {
+        require_once "src/DAO/EventoDAO.php";
+
+        $dao = new EventoDao();
+
+        return $dao->buscarEventosPorNomeEvento($nomeEvento);
+    }
+
+    public function buscarEventosPorNomeUsuario(string $nomeUsuario) : array {
+        require_once "src/DAO/EventoDAO.php";
+
+        $dao = new EventoDao();
+
+        return $dao->buscarEventosPorNomeUsuario($nomeUsuario);
+    }
+
     public function buscarEventosUsuarioNaoIncritos($idUsuario) : array {
         require_once "src/DAO/EventoDAO.php";
 

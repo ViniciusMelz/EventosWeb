@@ -80,3 +80,11 @@ input[type="text"],
     text-align: center;
     margin-left: 25%;
 }
+
+#tabelaEventos, th, td{
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+    margin-bottom: 50px;
+}
