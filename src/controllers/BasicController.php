@@ -21,6 +21,11 @@ class BasicController{
         
     }
 
+    public static function exportXML(){
+        require __DIR__.'/../views/ExportXml.php';
+        
+    }
+
     public static function erro(){
         $title = 'Pagina Erro';
         $content = 'Aconteceu um erro :(';

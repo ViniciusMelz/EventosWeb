@@ -13,15 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if($tipoFiltro == '1'){
         $eventoController = new EventoController();
         $eventos = $eventoController->listarEventosPorNomeEvento($filtro);
+        $_SESSION['eventos'] = $eventos;
     }else{
         $eventoController = new EventoController();
         $eventos = $eventoController->listarEventosPorNomeUsuario($filtro);
+        $_SESSION['eventos'] = $eventos;
     }
     
 }else{
     require_once "src/controllers/EventoController.php";
     $eventoController = new EventoController();
     $eventos = $eventoController->listarEventos();
+    $_SESSION['eventos'] = $eventos;
 }
 
 
@@ -39,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div>
         <a href="criarEvento"><button>Criar Novo Evento</button></a>
-        <a href=""><button>Exportar Eventos em Lote</button></a>
+        <a href="exportXML"><button>Exportar Eventos em Lote</button></a>
 
         <label for="tipoFiltro">Filtrar Por:</label>
         <form action="" method="POST">

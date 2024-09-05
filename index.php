@@ -23,9 +23,13 @@ switch ($requisicao) {
         BasicController::criarEvento();
 
         break;
+    case '/eventosWeb/exportXML':
+        BasicController::exportXML();
 
-        //API//
-        //Eventos//
+        break;
+
+    //API//
+    //Eventos//
     case '/eventosWeb/API/evento/listarEventos':
         EventoController::listarEventosAPI();
 
@@ -35,7 +39,7 @@ switch ($requisicao) {
 
         break;
 
-        //Participações Eventos//
+    //Participações Eventos//
     case '/eventosWeb/API/participacao/listarParticipacoes':
         ParticipacaoEventoController::buscarParticipacaoEventoAPI();
 
@@ -53,7 +57,7 @@ switch ($requisicao) {
 
         break;
 
-        //Usuário//
+    //Usuário//
     case '/eventosWeb/API/usuario/autenticarUsuario':
         UsuarioController::autenticarUsuarioAPI();
 
