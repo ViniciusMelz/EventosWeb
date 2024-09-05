@@ -16,7 +16,14 @@ if(!isset($_SESSION['eventos'])){
             $eventoXML->addChild('titulo', $eventos[$i]['titulo']);
             $eventoXML->addChild('descricao', $eventos[$i]['descricao']);
             $eventoXML->addChild('localEvento', $eventos[$i]['localEvento']);
-            $eventoXML->addChild('dataEvento', DateTime::createFromFormat('Y-m-d', $eventos[$i]['dataEvento'])->format('d/m/Y'));
+
+            if($eventos[$i]['dataEvento'] == '0000-00-00'){
+                $dataEvento = "";
+            }else{
+                $dataEvento = DateTime::createFromFormat('Y-m-d', $eventos[$i]['dataEvento'])->format('d/m/Y');
+            }
+
+            $eventoXML->addChild('dataEvento', $dataEvento);
             $eventoXML->addChild('registroCriado', $eventos[$i]['registroCriado']);
 
             ob_clean();

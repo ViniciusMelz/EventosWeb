@@ -71,7 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo '<td>' . $eventos[$i]['titulo'] . '</td>';
                 echo '<td>' . $eventos[$i]['descricao'] . '</td>';
                 echo '<td>' . $eventos[$i]['localEvento'] . '</td>';
-                echo '<td>' . DateTime::createFromFormat('Y-m-d', $eventos[$i]['dataEvento'])->format('d/m/Y') . '</td>';
+                if($eventos[$i]['dataEvento'] == '0000-00-00'){
+                    $dataEvento = "";
+                }else{
+                    $dataEvento = DateTime::createFromFormat('Y-m-d', $eventos[$i]['dataEvento'])->format('d/m/Y');
+                }
+                echo '<td>' . $dataEvento . '</td>';
                 echo '</tr>';
             }
             ?>
