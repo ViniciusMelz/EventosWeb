@@ -26,6 +26,12 @@ class BasicController{
         
     }
 
+    public static function logout(){
+        session_start();
+        session_destroy();
+        header('location: /eventosWeb/Login');
+    }
+
     public static function erro(){
         $title = 'Pagina Erro';
         $content = 'Aconteceu um erro :(';

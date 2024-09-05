@@ -60,4 +60,13 @@ class EventoController
         $inserirEvento = $model->inserirEvento($tituloEvento, $descricaoEvento, $localEvento, $dataEvento);
         return $inserirEvento;
     }
+
+    public static function deletarEvento($idEvento): bool
+    {
+        require 'src/models/EventoModel.php';
+
+        $model = new EventoModel();
+        $deletarEvento = $model->deletarEvento($idEvento);
+        return $deletarEvento;
+    }
 }

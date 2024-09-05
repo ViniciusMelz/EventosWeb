@@ -27,6 +27,10 @@ switch ($requisicao) {
         BasicController::exportXML();
 
         break;
+    case '/eventosWeb/logout':
+        BasicController::logout();
+
+        break;
 
     //API//
     //Eventos//
