@@ -120,6 +120,19 @@ class ParticipacaoEventoDao
         return $participacoes;
     }
 
+    public function buscarUsuariosParticipacaoEventoEspecifico(int $id): array
+    {
+        $query = "SELECT u.* FROM usuarios u, participacaoeventos pe, eventos e 
+                  WHERE pe.usuario_id = u.id 
+                  AND e.id = pe.evento_id 
+                  AND e.id = (?)
+                  ORDER BY u.nomeUsuario";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function buscarParticipacaoEventoUsuarioEspecifico(int $id): array
     {
         $query = "SELECT participacaoEventos.*, 

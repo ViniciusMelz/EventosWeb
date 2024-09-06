@@ -26,6 +26,16 @@ class BasicController{
         
     }
 
+    public static function editarEvento(){
+        require __DIR__.'/../views/EditarEvento.php';
+        
+    }
+
+    public static function participantesEvento(){
+        require __DIR__.'/../views/ParticipantesEvento.php';
+        
+    }
+
     public static function logout(){
         session_start();
         session_destroy();

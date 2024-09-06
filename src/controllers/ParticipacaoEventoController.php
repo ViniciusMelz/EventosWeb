@@ -1,7 +1,8 @@
 <?php
 class ParticipacaoEventoController
 {
-    public static function inserirParticipacaoEventoAPI(){
+    public static function inserirParticipacaoEventoAPI()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dados = json_decode(file_get_contents("php://input"));
             require_once 'src/models/ParticipacaoEventoModel.php';
@@ -12,19 +13,20 @@ class ParticipacaoEventoController
             $model = new ParticipacaoEventoModel();
 
             $resultado = $model->inserirParticipacaoEvento($idUsuario, $idEvento);
-            if($resultado != false){
+            if ($resultado != false) {
                 $resultadoBusca = $model->buscarParticipacaoEventoEspecifico($resultado);
-                if(count($resultadoBusca) == 1){
+                if (count($resultadoBusca) == 1) {
                     echo json_encode($resultadoBusca[0]);
-                }else{
+                } else {
                     echo json_encode(array('status' => 'erro', 'mensagem' => 'Erro ao recuperar dados do usuário inserido.'));
                 }
             }
         }
     }
 
-    public static function buscarParticipacaoEventoAPI(){
-        if($_SERVER['REQUEST_METHOD']=='POST') {
+    public static function buscarParticipacaoEventoAPI()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             require_once 'src/models/ParticipacaoEventoModel.php';
 
             $model = new ParticipacaoEventoModel();
@@ -33,8 +35,9 @@ class ParticipacaoEventoController
         }
     }
 
-    public static function deletarParticipacaoEventoAPI(){
-        if($_SERVER['REQUEST_METHOD']=='POST') {
+    public static function deletarParticipacaoEventoAPI()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dados = json_decode(file_get_contents("php://input"));
             require_once 'src/models/ParticipacaoEventoModel.php';
 
@@ -42,16 +45,17 @@ class ParticipacaoEventoController
 
             $model = new ParticipacaoEventoModel();
             $confirmacaoDelete = $model->deletarParticipacaoEvento($idParticipacaoEvento);
-            if($confirmacaoDelete != false){
+            if ($confirmacaoDelete != false) {
                 echo json_encode($dados);
-            }else{
+            } else {
                 echo json_encode($confirmacaoDelete);
             }
         }
     }
 
-    public static function BuscarParticipacaoEventoUsuarioEspecificoAPI(){
-        if($_SERVER['REQUEST_METHOD']=='POST') {
+    public static function BuscarParticipacaoEventoUsuarioEspecificoAPI()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dados = json_decode(file_get_contents("php://input"));
             require_once 'src/models/ParticipacaoEventoModel.php';
 
@@ -61,5 +65,13 @@ class ParticipacaoEventoController
             $participacaoEventosUsuario = $model->buscarParticipacaoEventousuarioEspecifico($idUsuario);
             echo json_encode($participacaoEventosUsuario);
         }
+    }
+
+    public function buscarUsuariosParticipacaoEventoEspecifico(int $idEvento): array
+    {
+        require_once 'src/models/ParticipacaoEventoModel.php';
+
+        $model = new ParticipacaoEventoModel();
+        return $model->buscarUsuariosParticipacaoEventoEspecifico($idEvento);
     }
 }

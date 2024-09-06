@@ -5,6 +5,7 @@ if (!isset($_SESSION["usuario"])) {
     header('location: /eventosWeb/Login');
 } else {
 }
+$_SESSION['idEvento'] = null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once "src/controllers/EventoController.php";
     $eventoController = new EventoController();
@@ -78,10 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php
             for ($i = 0; $i < count($eventos); $i++) {
                 echo '<tr>';
-                echo '<td>' . '<img src="src/assets/excluir.png" onclick="excluirEvento(this)"/> 
-                               <img src="src/assets/editar.png" onclick="excluirEvento(this)"/> 
-                               <img src="src/assets/participantes.png" onclick="excluirEvento(this)"/>
-                               <img src="src/assets/exportarPDF.png" onclick="excluirEvento(this)"/>'
+                echo '<td>' . '<img src="src/assets/excluir.png" onclick="excluirEvento(this)" title="Excluir Evento"/> 
+                               <img src="src/assets/editar.png" onclick="editarEvento(this)" title="Editar Evento"/> 
+                               <img src="src/assets/participantes.png" onclick="participantesEvento(this)" title="Participantes do Evento"/>
+                               <img src="src/assets/exportarPDF.png" onclick="excluirEvento(this)" title="Exportar PDF do "/>'
                  . '</td>';
                 echo '<td class="colunaId">' . $eventos[$i]['id'] . '</td>';
                 echo '<td>' . $eventos[$i]['titulo'] . '</td>';
@@ -107,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var id = $(botao).closest('tr').find('td.colunaId').text();
             console.log(id);
             $.ajax({
-                url: '', // Requisição para a própria página
+                url: '',
                 type: 'POST',
                 data: { 
                     idEvento: id ,
@@ -115,9 +116,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 },
                 success: function(response) {
                     window.location.reload(true);
+                }
+            });
+        }
+
+        function editarEvento(botao) {
+            var id = $(botao).closest('tr').find('td.colunaId').text();
+            console.log(id);
+            $.ajax({
+                url: 'editarEvento',
+                type: 'POST',
+                data: { 
+                    idEvento: id ,
+                    tipoRequisicao: 'editar'
                 },
-                error: function(xhr, status, error) {
-                    window.location.reload(true);
+                success: function(response) {
+                    window.location.href = 'editarEvento';
+                }
+            });
+        }
+
+        function participantesEvento(botao) {
+            var id = $(botao).closest('tr').find('td.colunaId').text();
+            console.log(id);
+            $.ajax({
+                url: 'participantesEvento',
+                type: 'POST',
+                data: { 
+                    idEvento: id ,
+                    tipoRequisicao: 'listarParticipantes'
+                },
+                success: function(response) {
+                    window.location.href = 'participantesEvento';
                 }
             });
         }

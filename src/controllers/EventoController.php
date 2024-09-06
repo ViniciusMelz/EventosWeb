@@ -69,4 +69,20 @@ class EventoController
         $deletarEvento = $model->deletarEvento($idEvento);
         return $deletarEvento;
     }
+
+    public static function buscarEventoEspecifico($idEvento): array
+    {
+        require 'src/models/EventoModel.php';
+
+        $model = new EventoModel();
+        return $model->buscarEventoEspecifico($idEvento);
+    }
+
+    public static function atualizarEvento(int $idEvento, string $tituloEvento, string $descricaoEvento, string $localEvento, string $dataEvento): bool
+    {
+        require 'src/models/EventoModel.php';
+
+        $model = new EventoModel();
+        return $model->atualizarEvento($idEvento, $tituloEvento, $descricaoEvento, $localEvento, $dataEvento);
+    }
 }

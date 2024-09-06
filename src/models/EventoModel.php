@@ -56,4 +56,12 @@ Class EventoModel{
 
         return $dao->atualizarEvento($id, $tituloEvento, $descricao, $localEvento, $data);
     }
+
+    public function buscarEventoEspecifico(int $id) : array {
+        require_once "src/DAO/EventoDAO.php";
+
+        $dao = new EventoDao();
+
+        return $dao->buscarEventoEspecifico($id);
+    }
 }

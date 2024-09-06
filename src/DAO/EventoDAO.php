@@ -85,4 +85,12 @@ class EventoDao{
         $stmt->execute();
         return $stmt->fetchALL(PDO::FETCH_ASSOC);
     }
+
+    public function buscarEventoEspecifico($idEvento): array{
+        $query = "SELECT * FROM eventos WHERE id = (?)";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindParam(1, $idEvento, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+    }
 }

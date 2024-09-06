@@ -31,6 +31,14 @@ switch ($requisicao) {
         BasicController::logout();
 
         break;
+    case '/eventosWeb/editarEvento':
+        BasicController::editarEvento();
+
+        break;
+    case '/eventosWeb/participantesEvento':
+        BasicController::participantesEvento();
+
+        break;
 
     //API//
     //Eventos//
