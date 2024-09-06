@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo '<td>' . '<img src="src/assets/excluir.png" onclick="excluirEvento(this)" title="Excluir Evento"/> 
                                <img src="src/assets/editar.png" onclick="editarEvento(this)" title="Editar Evento"/> 
                                <img src="src/assets/participantes.png" onclick="participantesEvento(this)" title="Participantes do Evento"/>
-                               <img src="src/assets/exportarPDF.png" onclick="excluirEvento(this)" title="Exportar PDF do "/>'
+                               <img src="src/assets/exportarPDF.png" onclick="excluirEvento(this)" title="Exportar PDF do Evento"/>'
                  . '</td>';
                 echo '<td class="colunaId">' . $eventos[$i]['id'] . '</td>';
                 echo '<td>' . $eventos[$i]['titulo'] . '</td>';

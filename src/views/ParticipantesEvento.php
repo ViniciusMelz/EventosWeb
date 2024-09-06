@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if($dataEvento == '0000-00-00'){
             $dataEvento = "";
         }else{
-            $dataEvento = DateTime::createFromFormat('Y-m-d', $eventos[$i]['dataEvento'])->format('d/m/Y');
+            $dataEvento = DateTime::createFromFormat('Y-m-d', $dataEvento)->format('d/m/Y');
         }
     }else{
         echo "Erro ao buscar o Evento";
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     require_once "src/controllers/ParticipacaoEventoController.php";
     $participacaoEventoController = new ParticipacaoEventoController();
-    $evento = $participacaoEventoController->buscarUsuariosParticipacaoEventoEspecifico($idEvento);
+    $participanteEvento = $participacaoEventoController->buscarUsuariosParticipacaoEventoEspecifico($idEvento);
 } else {
     header('location: /eventosWeb/Eventos');
 }
@@ -50,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div>
+        <a href="Eventos"><button>Voltar aos Eventos</button></a>
         <h1><?php echo $tituloEvento ?></h1>
         <h2>Descrição: <?php echo $descricaoEvento ?></h2>
         <h2>Local do Evento: <?php echo $localEvento ?></h2>
@@ -58,30 +59,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div>
         <table id="tabelaEventos">
             <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Descrição</th>
-                <th>Local</th>
-                <th>Data</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
             </tr>
             <?php
-            for ($i = 0; $i < count($eventos); $i++) {
+            for ($i = 0; $i < count($participanteEvento); $i++) {
                 echo '<tr>';
-                echo '<td>' . '<img src="src/assets/excluir.png" onclick="excluirEvento(this)" title="Excluir Evento"/> 
-                               <img src="src/assets/editar.png" onclick="editarEvento(this)" title="Editar Evento"/> 
-                               <img src="src/assets/participantes.png" onclick="participantesEvento(this)" title="Participantes do Evento"/>
-                               <img src="src/assets/exportarPDF.png" onclick="excluirEvento(this)" title="Exportar PDF do "/>'
-                 . '</td>';
-                echo '<td class="colunaId">' . $eventos[$i]['id'] . '</td>';
-                echo '<td>' . $eventos[$i]['titulo'] . '</td>';
-                echo '<td>' . $eventos[$i]['descricao'] . '</td>';
-                echo '<td>' . $eventos[$i]['localEvento'] . '</td>';
-                if($eventos[$i]['dataEvento'] == '0000-00-00'){
-                    $dataEvento = "";
-                }else{
-                    $dataEvento = DateTime::createFromFormat('Y-m-d', $eventos[$i]['dataEvento'])->format('d/m/Y');
-                }
-                echo '<td>' . $dataEvento . '</td>';
+                echo '<td>' . $participanteEvento[$i]['nomeUsuario'] . '</td>';
+                echo '<td>' . $participanteEvento[$i]['email'] . '</td>';
+                echo '<td>' . $participanteEvento[$i]['telefone'] . '</td>';
                 echo '</tr>';
             }
             ?>
