@@ -85,7 +85,7 @@ if (!isset($_SESSION["usuario"])) {
                 <label for="localEvento">Local do Evento</label>
                 <input type="text" name="localEvento" value="<?php echo $localEvento ?>">
                 <label for="dataEvento">Data do Evento</label>
-                <input type="date" name="dataEvento" value="<?php echo $dataEvento ?>">
+                <input type="date" name="dataEvento" value="<?php echo $dataEvento ?>" required>
                 <input id="botaoConfirmarEdicao" type="submit" value="Editar Evento" <?php echo $desabilitarBotao ?>>
             </form>
             <p id="erro"><?php echo $erro ?></p>

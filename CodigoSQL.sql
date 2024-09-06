@@ -19,7 +19,7 @@ CREATE TABLE Eventos (
 	titulo VARCHAR(255) NOT NULL,
 	descricao TEXT,
 	localEvento VARCHAR(255),
-	dataEvento DATE,
+	dataEvento DATE NOT NULL,
 	registroCriado TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
