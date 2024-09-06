@@ -39,6 +39,10 @@ switch ($requisicao) {
         BasicController::participantesEvento();
 
         break;
+    case '/eventosWeb/exportPDF':
+        BasicController::exportPDF();
+
+        break;
 
     //API//
     //Eventos//

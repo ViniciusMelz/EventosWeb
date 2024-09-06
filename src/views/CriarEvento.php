@@ -32,7 +32,6 @@ if (!isset($_SESSION["usuario"])) {
             $erro = 'Erro ao cadastrar Evento, Tente novamente!';
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +40,7 @@ if (!isset($_SESSION["usuario"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Jubileu Eventos</title>
+    <title>Cadastro de Eventos</title>
     <link rel="stylesheet" type="text/css" href="src/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
@@ -51,9 +50,13 @@ if (!isset($_SESSION["usuario"])) {
         <div id="containerLogin">
             <h1 id="tituloLogin">CADASTRO DE EVENTO</h1>
             <form action="" method="POST">
+                <label for="tituloEvento">Título do Evento</label>
                 <input type="text" name="tituloEvento" value="<?php echo $tituloEvento ?>" required>
+                <label for="descricaoEvento">Descrição do Evento</label>
                 <input type="text" name="descricaoEvento" value="<?php echo $descricaoEvento ?>">
+                <label for="localEvento">Local do Evento</label>
                 <input type="text" name="localEvento" value="<?php echo $localEvento ?>">
+                <label for="dataEvento">Data do Evento</label>
                 <input type="date" name="dataEvento" value="<?php echo $dataEvento ?>">
                 <input type="submit" value="Criar Evento">
             </form>
@@ -64,3 +67,5 @@ if (!isset($_SESSION["usuario"])) {
 </body>
 
 </html>
+<?php
+}

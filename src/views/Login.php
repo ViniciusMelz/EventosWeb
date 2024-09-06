@@ -22,7 +22,6 @@ if (isset($_SESSION["usuario"])) {
             $erro = 'Login ou Senha Incorretos, Tente Novamente!';
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -41,8 +40,10 @@ if (isset($_SESSION["usuario"])) {
         <div id="containerLogin">
             <h1 id="tituloLogin">LOGIN</h1>
             <form action="" method="POST">
-                <input type="text" name="login" value="viniciusmelz" required>
-                <input type="password" name="senha" value="senha" required>
+                <label for="login">Login</label>
+                <input type="text" name="login" required>
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" required>
                 <input type="submit" value="Login">
             </form>
             <p id="erro"><?php echo $erro ?></p>
@@ -52,3 +53,5 @@ if (isset($_SESSION["usuario"])) {
 </body>
 
 </html>
+<?php
+}

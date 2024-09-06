@@ -1,6 +1,5 @@
 <?php
 session_start();
-session_destroy();
 if (isset($_SESSION["usuario"])) {
     header('location: /eventosWeb/Eventos');
 } else {
@@ -38,7 +37,6 @@ if (isset($_SESSION["usuario"])) {
             $erro = 'As senhas devem ser Iguais!';
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -57,11 +55,17 @@ if (isset($_SESSION["usuario"])) {
         <div id="containerLogin">
             <h1 id="tituloLogin">CADASTRO</h1>
             <form action="" method="POST">
+                <label for="nome">Nome</label>
                 <input id="inputNome" type="text" name="nome" value="<?php echo $nome ?>" required>
+                <label for="email">Email</label>
                 <input id="inputEmail" type="email" name="email" value="<?php echo $email ?>" required>
+                <label for="login">Login</label>
                 <input id="inputLogin" type="text" name="login" value="<?php echo $login ?>" required>
+                <label for="telefone">Telefone</label>
                 <input id="inputTelefone" type="text" name="telefone" value="<?php echo $telefone ?>">
+                <label for="senha">Senha</label>
                 <input id="inputSenha" type="password" name="senha" value="<?php echo $senha ?>" required>
+                <label for="senhaDnv">Repita a Senha</label>
                 <input id="inputSenhaDnv" type="password" name="senhaDnv" value="<?php echo $senhaDnv ?>" required>
                 <input type="submit" value="Cadastro">
             </form>
@@ -72,3 +76,5 @@ if (isset($_SESSION["usuario"])) {
 </body>
 
 </html>
+<?php
+}

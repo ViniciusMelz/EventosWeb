@@ -4,37 +4,36 @@ $erro = "";
 if (!isset($_SESSION["usuario"])) {
     header('location: /eventosWeb/Login');
 } else {
-}
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $_SESSION['idEvento'] = $_POST['idEvento'];
-} else if (isset($_SESSION['idEvento']) || $_SESSION['idEvento'] != null) {
-    $idEvento = $_SESSION['idEvento'];
-
-    require_once "src/controllers/EventoController.php";
-    $eventoController = new EventoController();
-    $evento = $eventoController->buscarEventoEspecifico($idEvento);
-    if (count($evento) == 1) {
-        $idEvento = $evento[0]['id'];
-        $tituloEvento = $evento[0]['titulo'];
-        $descricaoEvento = $evento[0]['descricao'];
-        $localEvento = $evento[0]['localEvento'];
-        $dataEvento = $evento[0]['dataEvento'];
-
-        if($dataEvento == '0000-00-00'){
-            $dataEvento = "";
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $_SESSION['idEvento'] = $_POST['idEvento'];
+    } else if (isset($_SESSION['idEvento']) || $_SESSION['idEvento'] != null) {
+        $idEvento = $_SESSION['idEvento'];
+    
+        require_once "src/controllers/EventoController.php";
+        $eventoController = new EventoController();
+        $evento = $eventoController->buscarEventoEspecifico($idEvento);
+        if (count($evento) == 1) {
+            $idEvento = $evento[0]['id'];
+            $tituloEvento = $evento[0]['titulo'];
+            $descricaoEvento = $evento[0]['descricao'];
+            $localEvento = $evento[0]['localEvento'];
+            $dataEvento = $evento[0]['dataEvento'];
+    
+            if($dataEvento == '0000-00-00'){
+                $dataEvento = "";
+            }else{
+                $dataEvento = DateTime::createFromFormat('Y-m-d', $dataEvento)->format('d/m/Y');
+            }
         }else{
-            $dataEvento = DateTime::createFromFormat('Y-m-d', $dataEvento)->format('d/m/Y');
+            echo "Erro ao buscar o Evento";
         }
-    }else{
-        echo "Erro ao buscar o Evento";
+    
+        require_once "src/controllers/ParticipacaoEventoController.php";
+        $participacaoEventoController = new ParticipacaoEventoController();
+        $participanteEvento = $participacaoEventoController->buscarUsuariosParticipacaoEventoEspecifico($idEvento);
+    } else {
+        header('location: /eventosWeb/Eventos');
     }
-
-    require_once "src/controllers/ParticipacaoEventoController.php";
-    $participacaoEventoController = new ParticipacaoEventoController();
-    $participanteEvento = $participacaoEventoController->buscarUsuariosParticipacaoEventoEspecifico($idEvento);
-} else {
-    header('location: /eventosWeb/Eventos');
-}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Eventos</title>
+    <title>Participantes do Evento</title>
 </head>
 
 <body>
@@ -77,3 +76,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </body>
 
 </html>
+<?php
+}

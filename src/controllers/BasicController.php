@@ -36,6 +36,11 @@ class BasicController{
         
     }
 
+    public static function exportPDF(){
+        require __DIR__.'/../views/ExportPDF.php';
+        
+    }
+
     public static function logout(){
         session_start();
         session_destroy();
