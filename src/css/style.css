@@ -150,6 +150,7 @@ a:hover {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 50px;
 }
 
 #menuAcoes form {
@@ -323,4 +324,23 @@ a:hover {
     #tabelaEventos td {
         font-size: 0.9rem;
     }
+}
+
+#menuFuncionalidades{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+#divBtnForm{
+    padding-top: -50px;
+}
+
+#divForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#divInputs{
 }

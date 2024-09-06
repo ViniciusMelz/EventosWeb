@@ -48,20 +48,26 @@ if (!isset($_SESSION["usuario"])) {
         <div class="flex-wrapper">
             <div id="container">
                 <div id="menuAcoes">
-                    <a href="criarEvento"><button class="btn">Criar Novo Evento</button></a>
-                    <a href="exportXML"><button class="btn">Exportar Eventos em Lote</button></a>
-
-                    <label for="tipoFiltro">Filtrar Por:</label>
-                    <form action="" method="POST" class="formFiltro">
-                        <select name="tipoFiltro" id="comboTipoFiltro">
-                            <option value=1>Nome do Evento</option>
-                            <option value=2 <?php if ($tipoFiltro == 2)
-                                echo 'selected'; ?>>Nome do Usuário</option>
-                        </select>
-                        <input type="text" name="filtro" value="<?php echo $filtro ?>" required>
-                        <input type="submit" value="Filtrar" class="btn">
-                    </form>
-                    <a href="Eventos"><button class="btn">Limpar Filtros</button></a>
+                    <div id="menuFuncionalidades">
+                        <a href="criarEvento"><button class="btn">Criar Novo Evento</button></a>
+                        <a href="exportXML"><button class="btn">Exportar Eventos em Lote</button></a>
+                    </div>
+                    <div id="divForm">
+                        <form action="" method="POST" class="formFiltro">
+                            <div id="divInputs">
+                                <select name="tipoFiltro" id="comboTipoFiltro">
+                                    <option value=1>Nome do Evento</option>
+                                    <option value=2 <?php if ($tipoFiltro == 2)
+                                        echo 'selected'; ?>>Nome do Usuário</option>
+                                </select>
+                                <input type="text" name="filtro" value="<?php echo $filtro ?>" required>
+                            </div>
+                            <div id="divBtnForm">
+                                <input type="submit" value="Filtrar" class="btn" style="padding: 10px 15px">
+                                <a href="Eventos"><button type='button' class="btn">Limpar Filtros</button></a>
+                            </div>
+                        </form>
+                    </div>
                     <a href="logout"><button class="btn">Logout</button></a>
                 </div>
 
