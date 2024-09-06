@@ -61,7 +61,7 @@ if (!isset($_SESSION["usuario"])) {
                 <input type="submit" value="Criar Evento">
             </form>
             <p id="erro"><?php echo $erro ?></p>
-            <a href="Eventos"><button>Voltar aos Eventos</button></a>
+            <a href="Eventos"><button class="btn">Voltar aos Eventos</button></a>
         </div>
     </div>
 </body>

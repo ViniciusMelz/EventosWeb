@@ -48,30 +48,32 @@ if (!isset($_SESSION["usuario"])) {
 </head>
 
 <body>
-    <div>
-        <a href="Eventos"><button>Voltar aos Eventos</button></a>
-        <h1><?php echo $tituloEvento ?></h1>
-        <h2>Descrição: <?php echo $descricaoEvento ?></h2>
-        <h2>Local do Evento: <?php echo $localEvento ?></h2>
-        <h2>Data do Evento: <?php echo $dataEvento ?></h2>
-    </div>
-    <div>
-        <table id="tabelaEventos">
-            <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-            </tr>
-            <?php
-            for ($i = 0; $i < count($participanteEvento); $i++) {
-                echo '<tr>';
-                echo '<td>' . $participanteEvento[$i]['nomeUsuario'] . '</td>';
-                echo '<td>' . $participanteEvento[$i]['email'] . '</td>';
-                echo '<td>' . $participanteEvento[$i]['telefone'] . '</td>';
-                echo '</tr>';
-            }
-            ?>
-        </table>
+    <div class="container">
+        <a href="Eventos" class="btn-back"><button>Voltar aos Eventos</button></a>
+        <div class="event-details">
+            <h1 class="event-title"><?php echo $tituloEvento ?></h1>
+            <h2 class="event-description">Descrição: <?php echo $descricaoEvento ?></h2>
+            <h2 class="event-location">Local do Evento: <?php echo $localEvento ?></h2>
+            <h2 class="event-date">Data do Evento: <?php echo $dataEvento ?></h2>
+        </div>
+        <div class="participants-list">
+            <table id="tabelaEventos">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                    </tr>
+                    <?php
+                    for ($i = 0; $i < count($participanteEvento); $i++) {
+                        echo '<tr>';
+                        echo '<td>' . $participanteEvento[$i]['nomeUsuario'] . '</td>';
+                        echo '<td>' . $participanteEvento[$i]['email'] . '</td>';
+                        echo '<td>' . $participanteEvento[$i]['telefone'] . '</td>';
+                        echo '</tr>';
+                    }
+                    ?>
+            </table>
+        </div>
     </div>
 </body>
 
