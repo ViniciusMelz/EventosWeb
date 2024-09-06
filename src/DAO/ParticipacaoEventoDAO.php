@@ -51,7 +51,7 @@ class ParticipacaoEventoDao
     public function buscarParticipacaoEvento(): array
     {
         $query = "SELECT participacaoEventos.*, 
-                  usuarios.id  AS 'id_usuario', usuarios.nomeUsuario, usuarios.email, usuarios.login, usuarios.senha, usuarios.ehAdmin, 
+                  usuarios.id  AS 'id_usuario', usuarios.nomeUsuario, usuarios.email, usuarios.login, usuarios.senha, usuarios.ehAdmin, usuarios.telefone,
                   eventos.id AS 'id_evento', eventos.titulo, eventos.descricao, eventos.localEvento, eventos.dataEvento
                   FROM usuarios, participacaoEventos, eventos
                   WHERE usuarios.id = participacaoEventos.usuario_id
@@ -69,7 +69,8 @@ class ParticipacaoEventoDao
                     'email' => $result['email'],
                     'login' => $result['login'],
                     'senha' => $this->DesincriptografarSenha($result['senha']),
-                    'ehAdmin' => $result['ehAdmin']
+                    'ehAdmin' => $result['ehAdmin'],
+                    'telefone' => $result['telefone']
                 ],
                 'evento' => [
                     'id' => $result['id_evento'],
@@ -86,7 +87,7 @@ class ParticipacaoEventoDao
     public function buscarParticipacaoEventoEspecifico(int $id): array
     {
         $query = "SELECT participacaoEventos.*, 
-                  usuarios.id  AS 'id_usuario', usuarios.nomeUsuario, usuarios.email, usuarios.login, usuarios.senha, usuarios.ehAdmin, 
+                  usuarios.id  AS 'id_usuario', usuarios.nomeUsuario, usuarios.email, usuarios.login, usuarios.senha, usuarios.ehAdmin, usuarios.telefone,
                   eventos.id AS 'id_evento', eventos.titulo, eventos.descricao, eventos.localEvento, eventos.dataEvento
                   FROM usuarios, participacaoEventos, eventos
                   WHERE usuarios.id = participacaoEventos.usuario_id
@@ -106,7 +107,8 @@ class ParticipacaoEventoDao
                     'email' => $result['email'],
                     'login' => $result['login'],
                     'senha' => $this->DesincriptografarSenha($result['senha']),
-                    'ehAdmin' => $result['ehAdmin']
+                    'ehAdmin' => $result['ehAdmin'],
+                    'telefone' => $result['telefone']
                 ],
                 'evento' => [
                     'id' => $result['id_evento'],
@@ -136,7 +138,7 @@ class ParticipacaoEventoDao
     public function buscarParticipacaoEventoUsuarioEspecifico(int $id): array
     {
         $query = "SELECT participacaoEventos.*, 
-                  usuarios.id  AS 'id_usuario', usuarios.nomeUsuario, usuarios.email, usuarios.login, usuarios.senha, usuarios.ehAdmin, 
+                  usuarios.id  AS 'id_usuario', usuarios.nomeUsuario, usuarios.email, usuarios.login, usuarios.senha, usuarios.ehAdmin, usuarios.telefone,
                   eventos.id AS 'id_evento', eventos.titulo, eventos.descricao, eventos.localEvento, eventos.dataEvento
                   FROM usuarios, participacaoEventos, eventos
                   WHERE usuarios.id = participacaoEventos.usuario_id
@@ -156,7 +158,8 @@ class ParticipacaoEventoDao
                     'email' => $result['email'],
                     'login' => $result['login'],
                     'senha' => $this->DesincriptografarSenha($result['senha']),
-                    'ehAdmin' => $result['ehAdmin']
+                    'ehAdmin' => $result['ehAdmin'],
+                    'telefone' => $result['telefone']
                 ],
                 'evento' => [
                     'id' => $result['id_evento'],

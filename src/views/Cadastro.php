@@ -5,17 +5,18 @@ if (isset($_SESSION["usuario"])) {
     header('location: /eventosWeb/Eventos');
 } else {
     $erro = '';
-    $nome = $email = $login = $senha = $senhaDnv = '';
+    $nome = $email = $login = $senha = $senhaDnv = $telefone = '';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $login = $_POST['login'];
+        $telefone = $_POST['telefone'];
         $senha = $_POST['senha'];
         $senhaDnv = $_POST['senhaDnv'];
         if ($senha === $senhaDnv) {
             require_once "src/controllers/UsuarioController.php";
             $usuarioController = new UsuarioController();
-            $usuario = $usuarioController->inserirUsuario($nome, $email, $login, $senha);
+            $usuario = $usuarioController->inserirUsuario($nome, $email, $login, $senha, $telefone);
             if(!is_string($usuario)){
                 ?>
                 <div id="aviso">
@@ -29,7 +30,7 @@ if (isset($_SESSION["usuario"])) {
                     }, 5000);
                 </script>
                 <?php
-                $nome = $email = $login = $senha = $senhaDnv = '';
+                $nome = $email = $login = $senha = $senhaDnv = $telefone = '';
             }else{
                 $erro = $usuario;
             }
@@ -59,6 +60,7 @@ if (isset($_SESSION["usuario"])) {
                 <input id="inputNome" type="text" name="nome" value="<?php echo $nome ?>" required>
                 <input id="inputEmail" type="email" name="email" value="<?php echo $email ?>" required>
                 <input id="inputLogin" type="text" name="login" value="<?php echo $login ?>" required>
+                <input id="inputTelefone" type="text" name="telefone" value="<?php echo $telefone ?>">
                 <input id="inputSenha" type="password" name="senha" value="<?php echo $senha ?>" required>
                 <input id="inputSenhaDnv" type="password" name="senhaDnv" value="<?php echo $senhaDnv ?>" required>
                 <input type="submit" value="Cadastro">

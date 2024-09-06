@@ -36,10 +36,14 @@ class UsuarioController
             $login = $dados->login;
             $senha = $dados->senha;
             $ehAdmin = $dados->ehAdmin;
+            $telefone = '';
+            if(isset($dados->telefone)){
+                $telefone = $dados->telefone;
+            }
 
             $model = new UsuarioModel();
 
-            $resultado = $model->inserirUsuario($nome, $email, $login, $senha, $ehAdmin);
+            $resultado = $model->inserirUsuario($nome, $email, $login, $senha, $ehAdmin, $telefone);
             if ($resultado != false) {
                 $resultadoBusca = $model->buscarUsuarioEspecifico($resultado);
                 if (count($resultadoBusca) == 1) {
@@ -70,13 +74,13 @@ class UsuarioController
         return false;
     }
 
-    public function inserirUsuario(string $nome, string $email, string $login, string $senha): array | bool | string
+    public function inserirUsuario(string $nome, string $email, string $login, string $senha, string $telefone = ''): array | bool | string
     {
         require_once 'src/models/UsuarioModel.php';
 
         $model = new UsuarioModel();
         $ehAdmin = 1;
-        $resultado = $model->inserirUsuario($nome, $email, $login, $senha, $ehAdmin);
+        $resultado = $model->inserirUsuario($nome, $email, $login, $senha, $ehAdmin, $telefone);
         if ($resultado != false) {
             $resultadoBusca = $model->buscarUsuarioEspecifico($resultado);
             if (count($resultadoBusca) == 1) {

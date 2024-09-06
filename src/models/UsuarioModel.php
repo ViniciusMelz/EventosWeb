@@ -9,12 +9,12 @@ Class UsuarioModel{
         return $dao->buscarUsuarios();
     }
 
-    public function inserirUsuario(string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin) : int | bool {
+    public function inserirUsuario(string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin, string $telefone) : int | bool {
         require_once "src/DAO/UsuarioDAO.php";
 
         $dao = new UsuarioDao();
 
-        return $dao->inserirUsuario($nomeUsuario, $email, $login, $senha, $ehAdmin);
+        return $dao->inserirUsuario($nomeUsuario, $email, $login, $senha, $ehAdmin, $telefone);
     }
 
     public function deletarUsuario(int $id) : bool{
@@ -25,12 +25,12 @@ Class UsuarioModel{
         return $dao->deletarUsuario($id);
     }
 
-    public function atualizarUsuario(int $id, string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin) : bool {
+    public function atualizarUsuario(int $id, string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin, string $telefone) : bool {
         require_once "src/DAO/UsuarioDAO.php";
 
         $dao = new UsuarioDao();
 
-        return $dao->atualizarUsuario($id, $nomeUsuario, $email, $login, $senha, $ehAdmin);
+        return $dao->atualizarUsuario($id, $nomeUsuario, $email, $login, $senha, $ehAdmin, $telefone);
     }
 
     public function autenticarUsuario(string $login, string $senha): array{

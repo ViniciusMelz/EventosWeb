@@ -14,16 +14,17 @@ class UsuarioDao
         }
     }
 
-    public function inserirUsuario(string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin): int|bool
+    public function inserirUsuario(string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin, string $telefone): int|bool
     {
         $senhaIncriptografada = $this->CriptografarSenha($senha);
-        $query = "INSERT INTO usuarios (nomeUsuario, email, login, senha, ehAdmin) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO usuarios (nomeUsuario, email, login, senha, ehAdmin, telefone) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->conexao->prepare($query);
         $stmt->bindParam(1, $nomeUsuario, PDO::PARAM_STR);
         $stmt->bindParam(2, $email, PDO::PARAM_STR);
         $stmt->bindParam(3, $login, PDO::PARAM_STR);
         $stmt->bindParam(4, $senhaIncriptografada, PDO::PARAM_STR);
         $stmt->bindParam(5, $ehAdmin, PDO::PARAM_INT);
+        $stmt->bindParam(6, $telefone, PDO::PARAM_STR);
 
         try{
             if ($stmt->execute() == true) {
@@ -37,17 +38,18 @@ class UsuarioDao
         
     }
 
-    public function atualizarUsuario(int $id, string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin): bool
+    public function atualizarUsuario(int $id, string $nomeUsuario, string $email, string $login, string $senha, int $ehAdmin, string $telefone): bool
     {
         $senhaIncriptografada = $this->CriptografarSenha($senha);
-        $query = "UPDATE usuarios SET nomeUsuario = (?), email = (?), login = (?), senha = (?), ehAdmin = (?) WHERE id = (?)";
+        $query = "UPDATE usuarios SET nomeUsuario = (?), email = (?), login = (?), senha = (?), ehAdmin = (?), telefone = (?) WHERE id = (?)";
         $stmt = $this->conexao->prepare($query);
         $stmt->bindParam(1, $nomeUsuario, PDO::PARAM_STR);
         $stmt->bindParam(2, $email, PDO::PARAM_STR);
         $stmt->bindParam(3, $login, PDO::PARAM_STR);
         $stmt->bindParam(4, $senhaIncriptografada, PDO::PARAM_STR);
         $stmt->bindParam(5, $ehAdmin, PDO::PARAM_INT);
-        $stmt->bindParam(6, $id, PDO::PARAM_INT);
+        $stmt->bindParam(6, $telefone, PDO::PARAM_STR);
+        $stmt->bindParam(7, $id, PDO::PARAM_INT);
 
         return $stmt->execute();
     }
@@ -75,7 +77,8 @@ class UsuarioDao
                 'email' => $result['email'],
                 'login' => $result['login'],
                 'senha' => $this->DesincriptografarSenha($result['senha']),
-                'ehAdmin' => $result['ehAdmin']
+                'ehAdmin' => $result['ehAdmin'],
+                'telefone' => $result['telefone']
             ];
         }
         return $participacoes;
@@ -96,7 +99,8 @@ class UsuarioDao
                     'email' => $result['email'],
                     'login' => $result['login'],
                     'senha' => $this->DesincriptografarSenha($result['senha']),
-                    'ehAdmin' => $result['ehAdmin']
+                    'ehAdmin' => $result['ehAdmin'],
+                    'telefone' => $result['telefone']
                 ];
             }
         }
@@ -118,7 +122,8 @@ class UsuarioDao
                 'email' => $result['email'],
                 'login' => $result['login'],
                 'senha' => $this->DesincriptografarSenha($result['senha']),
-                'ehAdmin' => $result['ehAdmin']
+                'ehAdmin' => $result['ehAdmin'],
+                'telefone' => $result['telefone']
             ];
         }
         return $participacoes;
