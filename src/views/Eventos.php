@@ -117,7 +117,6 @@ if (!isset($_SESSION["usuario"])) {
 <script>
     function excluirEvento(botao) {
         var id = $(botao).closest('tr').find('td.colunaId').text();
-        console.log(id);
         $.ajax({
             url: '',
             type: 'POST',
@@ -133,7 +132,6 @@ if (!isset($_SESSION["usuario"])) {
 
     function editarEvento(botao) {
         var id = $(botao).closest('tr').find('td.colunaId').text();
-        console.log(id);
         $.ajax({
             url: 'editarEvento',
             type: 'POST',
@@ -149,7 +147,6 @@ if (!isset($_SESSION["usuario"])) {
 
     function participantesEvento(botao) {
         var id = $(botao).closest('tr').find('td.colunaId').text();
-        console.log(id);
         $.ajax({
             url: 'participantesEvento',
             type: 'POST',
@@ -165,7 +162,6 @@ if (!isset($_SESSION["usuario"])) {
 
     function exportarParticipantesPDF(botao) {
         var id = $(botao).closest('tr').find('td.colunaId').text();
-        console.log(id);
         $.ajax({
             url: 'exportPDF',
             type: 'POST',
